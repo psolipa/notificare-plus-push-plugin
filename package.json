@@ -1,0 +1,52 @@
+{
+  "name": "cordova-plugin-notificare-push",
+  "version": "3.5.0",
+  "description": "Notificare Push Cordova Plugin.",
+  "author": "Notificare <info@notifica.re> (https://notificare.com)",
+  "license": "MIT",
+  "homepage": "https://github.com/notificare/notificare-sdk-cordova#readme",
+  "repository": {
+    "url": "https://github.com/Notificare/notificare-sdk-cordova"
+  },
+  "bugs": {
+    "url": "https://github.com/Notificare/notificare-sdk-cordova/issues"
+  },
+  "keywords": [
+    "notificare",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "main": "build/notificare-push.bundle.js",
+  "types": "build/js/index.d.ts",
+  "files": [
+    "src",
+    "build",
+    "plugin.xml",
+    "CHANGELOG.md",
+    "MIGRATION.md"
+  ],
+  "peerDependencies": {
+    "cordova-plugin-notificare": "3.5.0"
+  },
+  "devDependencies": {
+    "cordova-plugin-notificare": "3.5.0"
+  },
+  "cordova": {
+    "id": "cordova-plugin-notificare-push",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "engines": {
+    "cordovaDependencies": {
+      ">=3.0.0": {
+        "cordova": ">= 9.0.0",
+        "cordova-android": ">=8.0.0",
+        "cordova-ios": ">=5.0.0"
+      }
+    }
+  },
+  "gitHead": "1a4c78c4827e130206c111e5e5efb72f5c8503e0"
+}

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="cordova-plugin-notificare-push"
+        version="3.5.0"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <name>Notificare Push</name>
+
+    <js-module name="NotificarePush" src="src/js/notificare-push.js">
+        <clobbers target="NotificarePush" />
+        <merges target="cordova.plugins.NotificarePush" />
+    </js-module>
+
+
+    <hook type="before_plugin_install" src="src/installDependencies.js" />
+    <hook type="before_plugin_install" src="src/unzipAndCopyConfigurations.js" />
+
+    <platform name="android">
+        <resource-file src="google-services.json" target="./google-services.json" />
+        <config-file target="config.xml" parent="/*">
+            <preference name="AndroidXEnabled" value="true" />
+
+            <preference name="GradlePluginKotlinEnabled" value="true" />
+            <preference name="GradlePluginKotlinVersion" value="1.6.21" />
+
+            <preference name="GradlePluginGoogleServicesEnabled" value="true" />
+            <preference name="GradlePluginGoogleServicesVersion" value="4.3.14" />
+        </config-file>
+
+        <config-file target="res/xml/config.xml" parent="/widget">
+            <feature name="NotificarePush">
+                <param name="android-package" value="re.notifica.push.cordova.NotificarePushPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="NotificarePush">
+                <param name="android-package" value="re.notifica.push.cordova.NotificarePushPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <receiver android:name="re.notifica.push.cordova.NotificarePushPluginReceiver" android:exported="false" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity/[@android:name='MainActivity']">
+            <intent-filter>
+                <action android:name="re.notifica.intent.action.RemoteMessageOpened" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </config-file>
+
+        <source-file src="src/android/NotificarePushPlugin.kt" target-dir="app/src/main/kotlin/re/notifica/push/cordova" />
+        <source-file src="src/android/NotificarePushPluginEventBroker.kt" target-dir="app/src/main/kotlin/re/notifica/push/cordova" />
+        <source-file src="src/android/NotificarePushPluginReceiver.kt" target-dir="app/src/main/kotlin/re/notifica/push/cordova" />
+
+        <framework custom="true" src="src/android/build-extras.gradle" type="gradleReference" />
+    </platform>
+
+    <platform name="ios">
+    <resource-file src="GoogleService-Info.plist" target="./GoogleService-Info.plist" />
+        <config-file target="config.xml" parent="/*">
+            <feature name="NotificarePush">
+                <param name="ios-package" value="NotificarePushPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>remote-notification</string>
+            </array>
+        </config-file>
+
+        <config-file target="*/Entitlements-Debug.plist" parent="aps-environment" >
+            <string>development</string>
+        </config-file>
+
+        <config-file target="*/Entitlements-Release.plist" parent="aps-environment">
+            <string>production</string>
+        </config-file>
+
+        <source-file src="src/ios/NotificarePushPlugin.swift" />
+        <source-file src="src/ios/NotificarePushPluginEventBroker.swift" />
+
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git" />
+            </config>
+            <pods use-frameworks="true">
+                <pod name="Notificare/NotificarePushKit" spec="3.5.0" />
+            </pods>
+        </podspec>
+    </platform>
+</plugin>
