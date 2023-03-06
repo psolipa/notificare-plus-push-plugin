@@ -5,7 +5,7 @@ var AdmZip = require("adm-zip");
 
 var utils = require("./utilities");
 var fs = require('fs');
-const path = './google-services.json';
+const gspath = './google-services.json';
 
 var constants = {
   googleServices: "google-services"
@@ -27,7 +27,7 @@ module.exports = function(context) {
     utils.handleError("Invalid platform", defer);
   }
 
-  if (fs.existsSync(path)) {
+  if (fs.existsSync(gspath)) {
     var wwwPath = utils.getResourcesFolderPath(context, platform, platformConfig);
     var sourceFolderPath = utils.getSourceFolderPath(context, wwwPath);
     var googleServicesZipFile = utils.getZipFile(sourceFolderPath, constants.googleServices);
