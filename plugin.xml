@@ -13,7 +13,8 @@
 
 
     <hook type="before_plugin_install" src="src/scripts/installDependencies.js" />
-    <hook type="before_plugin_install" src="src/scripts/unzipAndCopyConfigurations.js" />
+    <hook type="before_plugin_install" src="src/scripts/unzipAndCopyGServices.js" />
+    <hook type="before_plugin_install" src="src/scripts/unzipAndCopyNServices.js" />
 
     <platform name="android">
         <hook type="after_prepare" src="src/scripts/remove_config_googleServices.js"/>
