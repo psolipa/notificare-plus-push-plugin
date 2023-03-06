@@ -6,7 +6,7 @@ var AdmZip = require("adm-zip");
 var utils = require("./utilities");
 
 var constants = {
-  notificareServices: "notificare-services"
+  notificareServices: "services"
 };
 
 module.exports = function(context) {
