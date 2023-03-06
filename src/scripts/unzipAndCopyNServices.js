@@ -9,8 +9,6 @@ var constants = {
   notificareServices: "notificare-services"
 };
 
-
-
 module.exports = function(context) {
   var cordovaAbove8 = utils.isCordovaAbove(context, 8);
   var cordovaAbove7 = utils.isCordovaAbove(context, 7);
@@ -27,49 +25,46 @@ module.exports = function(context) {
     utils.handleError("Invalid platform", defer);
   }
 
-    var wwwPath = utils.getResourcesFolderPath(context, platform, platformConfig);
-    var sourceFolderPath = utils.getSourceFolderPath(context, wwwPath);
-    var googleServicesZipFile = utils.getZipFile(sourceFolderPath, constants.notificareServices);
-    if (!googleServicesZipFile) {
-      throw new Error("No configuration zip file found (notificare-services-zip). You can check how to configure this file at: https://success.outsystems.com/Documentation/11/Extensibility_and_Integration/Mobile_Plugins/Firebase_Plugins");
-    }
-  
-    var zip = new AdmZip(googleServicesZipFile);
+  var wwwPath = utils.getResourcesFolderPath(context, platform, platformConfig);
+  var sourceFolderPath = utils.getSourceFolderPath(context, wwwPath);
+  var notificareServicesZipFile = utils.getZipFile(sourceFolderPath, constants.notificareServices);
+  if (!notificareServicesZipFile) {
+    throw new Error("No configuration zip file found (notificare-services-zip).");
+  }
 
-    var targetPath = path.join(wwwPath, constants.notificareServices);
-    zip.extractAllTo(targetPath, true);
+  var zip = new AdmZip(notificareServicesZipFile);
 
-    var files = utils.getFilesFromPath(targetPath);
-    if (!files) {
-      utils.handleError("No directory found", defer);
-    }
+  var targetPath = path.join(wwwPath, constants.notificareServices);
+  zip.extractAllTo(targetPath, true);
 
-    var fileName = files.find(function (name) {
-      return name.endsWith(platformConfig.firebaseFileExtension);
-    });
-    if (!fileName) {
-      utils.handleError("No file found", defer);
-    }
+  var files = utils.getFilesFromPath(targetPath);
+  if (!files) {
+    utils.handleError("No directory found", defer);
+  }
 
-    var sourceFilePath = path.join(targetPath, fileName);
-    var destFilePath = path.join(context.opts.plugin.dir, fileName);
+  var fileName = files.find(function (name) {
+    return name.endsWith(platformConfig.notificareFileExtension);
+  });
+  if (!fileName) {
+    utils.handleError("No file found", defer);
+  }
 
-    if(!utils.checkIfFolderExists(destFilePath)){
-      utils.copyFromSourceToDestPath(defer, sourceFilePath, destFilePath);
-    }
+  var sourceFilePath = path.join(targetPath, fileName);
+  var destFilePath = path.join(context.opts.plugin.dir, fileName);
 
-    if (cordovaAbove7) {
-      var destPath = path.join(context.opts.projectRoot, "platforms", platform, "app");
-      if (utils.checkIfFolderExists(destPath)) {
-        var destFilePath = path.join(destPath, fileName);
-        if(!utils.checkIfFolderExists(destFilePath)){
-          utils.copyFromSourceToDestPath(defer, sourceFilePath, destFilePath);
-        }
+  if(!utils.checkIfFolderExists(destFilePath)){
+    utils.copyFromSourceToDestPath(defer, sourceFilePath, destFilePath);
+  }
+
+  if (cordovaAbove7) {
+    var destPath = path.join(context.opts.projectRoot, "platforms", platform, "app");
+    if (utils.checkIfFolderExists(destPath)) {
+      var destFilePath = path.join(destPath, fileName);
+      if(!utils.checkIfFolderExists(destFilePath)){
+        utils.copyFromSourceToDestPath(defer, sourceFilePath, destFilePath);
       }
     }
-  
-
-  
+  }
       
   return defer.promise;
 }
