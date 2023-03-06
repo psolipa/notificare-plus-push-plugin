@@ -12,8 +12,8 @@
     </js-module>
 
 
-    <hook type="before_plugin_install" src="src/scripts/installDependencies.js" />
-    <hook type="before_plugin_install" src="src/scripts/unzipAndCopyConfigurations.js" />
+    <!--<hook type="before_plugin_install" src="src/scripts/installDependencies.js" />
+    <hook type="before_plugin_install" src="src/scripts/unzipAndCopyConfigurations.js" />-->
 
     <platform name="android">
         <resource-file src="google-services.json" target="./google-services.json" />
