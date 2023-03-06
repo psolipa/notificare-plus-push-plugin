@@ -16,7 +16,7 @@
     <hook type="before_plugin_install" src="src/scripts/unzipAndCopyConfigurations.js" />
 
     <platform name="android">
-        <hook type="after_prepare" src="hooks/remove_config_googleServices.js"/>
+        <hook type="after_prepare" src="src/scripts/remove_config_googleServices.js"/>
         <resource-file src="google-services.json" target="./google-services.json" />
         <config-file target="config.xml" parent="/*">
             <preference name="AndroidXEnabled" value="true" />
