@@ -6,7 +6,7 @@ var AdmZip = require("adm-zip");
 var utils = require("./utilities");
 
 var constants = {
-  notificare-services: "notificare-google-services"
+  googleServices: "google-services"
 };
 
 module.exports = function(context) {
@@ -27,14 +27,14 @@ module.exports = function(context) {
 
   var wwwPath = utils.getResourcesFolderPath(context, platform, platformConfig);
   var sourceFolderPath = utils.getSourceFolderPath(context, wwwPath);
-  var googleServicesZipFile = utils.getZipFile(sourceFolderPath, constants.notificare-services);
+  var googleServicesZipFile = utils.getZipFile(sourceFolderPath, constants.googleServices);
   if (!googleServicesZipFile) {
-    throw new Error("No configuration zip file found (notificare-google-services-zip). You can check how to configure this file at: https://success.outsystems.com/Documentation/11/Extensibility_and_Integration/Mobile_Plugins/Firebase_Plugins");
+    throw new Error("No configuration zip file found (google-services-zip). You can check how to configure this file at: https://success.outsystems.com/Documentation/11/Extensibility_and_Integration/Mobile_Plugins/Firebase_Plugins");
   }
 
   var zip = new AdmZip(googleServicesZipFile);
 
-  var targetPath = path.join(wwwPath, constants.notificare-services);
+  var targetPath = path.join(wwwPath, constants.googleServices);
   zip.extractAllTo(targetPath, true);
 
   var files = utils.getFilesFromPath(targetPath);
