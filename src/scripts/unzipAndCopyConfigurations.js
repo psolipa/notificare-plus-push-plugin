@@ -27,7 +27,7 @@ module.exports = function(context) {
     utils.handleError("Invalid platform", defer);
   }
 
-  if (fs.existsSync(gspath)) {
+  if (!fs.existsSync(gspath)) {
     var wwwPath = utils.getResourcesFolderPath(context, platform, platformConfig);
     var sourceFolderPath = utils.getSourceFolderPath(context, wwwPath);
     var googleServicesZipFile = utils.getZipFile(sourceFolderPath, constants.googleServices);
