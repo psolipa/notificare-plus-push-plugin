@@ -16,7 +16,7 @@
     <hook type="before_plugin_install" src="src/scripts/unzipAndCopyConfigurations.js" />
 
     <platform name="android">
-        <resource-file src="google-services.json" target="./google-services.json" />
+        <resource-file src="notificare-services.json" target="./notificare-services.json" />
         <config-file target="config.xml" parent="/*">
             <preference name="AndroidXEnabled" value="true" />
 
@@ -60,7 +60,7 @@
     </platform>
 
     <platform name="ios">
-    <resource-file src="GoogleService-Info.plist" target="./GoogleService-Info.plist" />
+    <resource-file src="notificare-services-Info.plist" target="./notificare-services-Info.plist" />
         <config-file target="config.xml" parent="/*">
             <feature name="NotificarePush">
                 <param name="ios-package" value="NotificarePushPlugin" />
