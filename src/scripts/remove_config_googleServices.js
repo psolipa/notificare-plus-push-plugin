@@ -60,6 +60,7 @@ module.exports = function(context) {
         var content = fs.readFileSync(pathConfig,"utf-8");
 
         var contentJSON = JSON.parse(content);
+        console.log(content);
         contentJSON.IS_GRADLE_PLUGIN_GOOGLE_SERVICES_ENABLED = false;
         content = JSON.stringify(contentJSON);
 
