@@ -20,7 +20,7 @@ dependencies {
     def notificare_version = '3.5.0'
     api "re.notifica:notificare:$notificare_version"
     api "re.notifica:notificare-push:$notificare_version"
-    implementation "re.notifica:notificare-push-gms:$notificare_version"
+    //implementation "re.notifica:notificare-push-gms:$notificare_version"
     implementation "re.notifica:notificare-push-hms:$notificare_version"
 
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
