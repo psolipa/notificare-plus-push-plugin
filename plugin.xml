@@ -13,16 +13,15 @@
 
 
     <hook type="before_plugin_install" src="src/scripts/installDependencies.js" />
-    <hook type="before_plugin_install" src="src/scripts/unzipAndCopyGServices.js" />
+    <!--<hook type="before_plugin_install" src="src/scripts/unzipAndCopyGServices.js" />-->
     <hook type="before_plugin_install" src="src/scripts/unzipAndCopyNServices.js" />
 
     <platform name="android">
         <hook type="after_prepare" src="src/scripts/remove_config_googleServices.js"/>
-        <resource-file src="google-services.json" target="./google-services.json" />
+        <!--<resource-file src="google-services.json" target="./google-services.json" />-->
         <config-file target="config.xml" parent="/*">
             <preference name="AndroidXEnabled" value="true" />
-            <preference name="android-minSdkVersion" value="26" />
-            <preference name="android-targetSdkVersion" value="26" />
+            
             <preference name="GradlePluginKotlinEnabled" value="true" />
             <preference name="GradlePluginKotlinVersion" value="1.6.21" />
 
@@ -63,7 +62,7 @@
     </platform>
 
     <platform name="ios">
-    <resource-file src="GoogleService-Info.plist" target="./GoogleService-Info.plist" />
+    <!--<resource-file src="GoogleService-Info.plist" target="./GoogleService-Info.plist" />-->
         <config-file target="config.xml" parent="/*">
             <feature name="NotificarePush">
                 <param name="ios-package" value="NotificarePushPlugin" />
