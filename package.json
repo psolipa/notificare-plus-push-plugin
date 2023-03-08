@@ -35,16 +35,14 @@
   "cordova": {
     "id": "cordova-plugin-notificare-push",
     "platforms": [
-      "android",
-      "ios"
+      "android"
     ]
   },
   "engines": {
     "cordovaDependencies": {
       ">=3.0.0": {
         "cordova": ">= 9.0.0",
-        "cordova-android": ">=8.0.0",
-        "cordova-ios": ">=5.0.0"
+        "cordova-android": ">=8.0.0"
       }
     }
   },
