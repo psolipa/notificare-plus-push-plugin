@@ -60,6 +60,7 @@
     </platform>
 
     <platform name="ios">
+    <resource-file src="NotificareServices.plist" target="NotificareServices.plist" />
         <config-file target="config.xml" parent="/*">
             <feature name="NotificarePush">
                 <param name="ios-package" value="NotificarePushPlugin" />
