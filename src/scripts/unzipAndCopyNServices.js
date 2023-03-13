@@ -55,7 +55,9 @@ module.exports = function(context) {
   }
 
   var sourceFilePath = path.join(targetPath, fileName);
+  console.log(`DEBUG BUILD - Source file path: ${sourceFilePath}`);
   var destFilePath = path.join(context.opts.plugin.dir, fileName);
+  console.log(`DEBUG BUILD - Destination file path: ${destFilePath}`);
 
   if(!utils.checkIfFolderExists(destFilePath)){
     utils.copyFromSourceToDestPath(defer, sourceFilePath, destFilePath);
