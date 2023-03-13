@@ -60,7 +60,6 @@
     </platform>
 
     <platform name="ios">
-    <!--<resource-file src="GoogleService-Info.plist" target="./GoogleService-Info.plist" />-->
         <config-file target="config.xml" parent="/*">
             <feature name="NotificarePush">
                 <param name="ios-package" value="NotificarePushPlugin" />
