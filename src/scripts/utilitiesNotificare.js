@@ -3,8 +3,6 @@
 var path = require("path");
 var fs = require("fs");
 
-var utils = require("./utils");
-
 var constants = {
   platforms: "platforms",
   android: {

@@ -1,8 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 
-const pluginId = "com-outsystems-minsdkversionchanger";
-
 module.exports = function(context) {
     function getPlatformVersion(context) {
         var projectRoot = context.opts.projectRoot;
