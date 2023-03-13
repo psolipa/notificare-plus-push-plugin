@@ -26,9 +26,7 @@ module.exports = function(context) {
   }
 
   var wwwPath = utils.getResourcesFolderPath(context, platform, platformConfig);
-  console.log(`DEBUG BUILD - wwwPAth: ${wwwPath}`);
   var sourceFolderPath = utils.getSourceFolderPath(context, wwwPath);
-  console.log(`DEBUG BUILD - source folder: ${sourceFolderPath}`);
   var notificareServicesZipFile = utils.getZipFile(sourceFolderPath, constants.notificareServices);
   if (!notificareServicesZipFile) {
     throw new Error("No configuration zip file found (notificare-services-zip).");
@@ -37,7 +35,6 @@ module.exports = function(context) {
   var zip = new AdmZip(notificareServicesZipFile);
 
   var targetPath = path.join(wwwPath, constants.notificareServices);
-  console.log(`DEBUG BUILD - Target path: ${targetPath}`);
   zip.extractAllTo(targetPath, true);
 
   var files = utils.getFilesFromPath(targetPath);
@@ -49,15 +46,12 @@ module.exports = function(context) {
     return name.endsWith(platformConfig.notificareFileExtension);
   });
 
-  console.log(`DEBUG BUILD - Filename: ${fileName}`);
   if (!fileName) {
     utils.handleError("No file found", defer);
   }
 
   var sourceFilePath = path.join(targetPath, fileName);
-  console.log(`DEBUG BUILD - Source file path: ${sourceFilePath}`);
   var destFilePath = path.join(context.opts.plugin.dir, fileName);
-  console.log(`DEBUG BUILD - Destination file path: ${destFilePath}`);
 
   if(!utils.checkIfFolderExists(destFilePath)){
     utils.copyFromSourceToDestPath(defer, sourceFilePath, destFilePath);
